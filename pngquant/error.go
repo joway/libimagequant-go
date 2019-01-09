@@ -1,20 +1,21 @@
 package pngquant
 
+import "github.com/pkg/errors"
+
 /*
 #include "libimagequant.h"
 */
 import "C"
-import "errors"
 
 var (
-	ErrQualityTooLow      = errors.New("quality too low")
-	ErrValueOutOfRange    = errors.New("value out of range")
-	ErrOutOfMemory        = errors.New("out of memory")
-	ErrAborted            = errors.New("aborted")
-	ErrBitmapNotAvailable = errors.New("bitmap not available")
-	ErrBufferTooSmall     = errors.New("buffer too small")
-	ErrInvalidPointer     = errors.New("invalid pointer")
-	ErrUseAfterFree = errors.New("use after free")
+	ErrQualityTooLow      = errors.New("Quality too low")
+	ErrValueOutOfRange    = errors.New("Value out of range")
+	ErrOutOfMemory        = errors.New("Out of memory")
+	ErrAborted            = errors.New("Aborted")
+	ErrBitmapNotAvailable = errors.New("Bitmap not available")
+	ErrBufferTooSmall     = errors.New("Buffer too small")
+	ErrInvalidPointer     = errors.New("Invalid pointer")
+	ErrUseAfterFree       = errors.New("Use after free")
 )
 
 func translateError(iqe C.liq_error) error {
@@ -36,6 +37,6 @@ func translateError(iqe C.liq_error) error {
 	case (C.LIQ_INVALID_POINTER):
 		return ErrInvalidPointer
 	default:
-		return errors.New("unknown error")
+		return errors.New("Unknown error")
 	}
 }

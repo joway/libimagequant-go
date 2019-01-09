@@ -7,13 +7,19 @@ import "image"
 */
 import "C"
 
-func Compress(img image.Image, quality int) (image.Image, error) {
+func Compress(img image.Image, quality int, speed int) (image.Image, error) {
 	width := img.Bounds().Max.X
 	height := img.Bounds().Max.Y
 
 	// init libimagequant attributes holder
 	attr, err := NewAttributes()
 	if err != nil {
+		return nil, err
+	}
+	if err := attr.SetSpeed(speed); err != nil {
+		return nil, err
+	}
+	if err := attr.SetQuality(0, quality); err != nil {
 		return nil, err
 	}
 	defer attr.Release()

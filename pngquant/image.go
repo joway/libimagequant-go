@@ -1,7 +1,7 @@
 package pngquant
 
 import (
-	"errors"
+	"github.com/pkg/errors"
 	"unsafe"
 )
 
@@ -20,7 +20,7 @@ type Image struct {
 func NewImage(attr *Attributes, rgba32data []byte, width, height int, gamma float64) (*Image, error) {
 	pImg := C.liq_image_create_rgba(attr.p, unsafe.Pointer(C.CString(string(rgba32data))), C.int(width), C.int(height), C.double(gamma))
 	if pImg == nil {
-		return nil, errors.New("failed to create image (invalid argument)")
+		return nil, errors.New("Failed to create image (invalid argument)")
 	}
 
 	return &Image{
@@ -41,9 +41,9 @@ func (i *Image) Quantize(attr *Attributes) (*Result, error) {
 	res := Result{
 		im: i,
 	}
-	liqerr := C.liq_image_quantize(i.p, attr.p, &res.p)
-	if liqerr != C.LIQ_OK {
-		return nil, translateError(liqerr)
+	err := C.liq_image_quantize(i.p, attr.p, &res.p)
+	if err != C.LIQ_OK {
+		return nil, translateError(err)
 	}
 
 	return &res, nil
