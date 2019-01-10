@@ -1,5 +1,10 @@
 # libimagequant-go
 
+![GitHub release](https://img.shields.io/github/tag/joway/libimagequant-go.svg?label=release)
+[![Go Report Card](https://goreportcard.com/badge/github.com/joway/libimagequant-go)](https://goreportcard.com/report/github.com/joway/libimagequant-go)
+[![codecov](https://codecov.io/gh/joway/libimagequant-go/branch/master/graph/badge.svg)](https://codecov.io/gh/joway/libimagequant-go)
+[![CircleCI](https://circleci.com/gh/joway/libimagequant-go.svg?style=shield)](https://circleci.com/gh/joway/libimagequant-go)
+
 A golang wrapper for [libimagequant](https://github.com/ImageOptim/libimagequant).
 
 ## Used by
